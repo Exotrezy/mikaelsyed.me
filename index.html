@@ -15,8 +15,8 @@ html{scroll-behavior:auto} /* we handle scroll manually for pinned sections */
   --bg:#08080f;
   --fg:#ebebeb;
   --sub:#aaaabc;
-  --dim:#5a5a72;
-  --faint:#22222e;
+  --dim:#ababb3;
+  --faint:#686870;
   --rule:#181828;
   --mono:'Fira Code',monospace;
   --sans:'Inter',system-ui,sans-serif;
@@ -108,7 +108,7 @@ nav.scrolled{background:rgba(8,8,15,.88);backdrop-filter:blur(16px);border-color
   position:absolute;right:0;
   top:50%;transform:translateY(-44%);
   width:52%;height:86%;
-  pointer-events:auto;z-index:0;opacity:.75;
+  pointer-events:auto;z-index:0;opacity:.95;
 }
 .hero-text{position:relative;z-index:2;max-width:520px}
 .hero-eye{
@@ -384,7 +384,7 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
     <h1 class="hero-name">mikael</h1>
     <p class="hero-name-sub">syed.</p>
     <p class="hero-bio">
-      building at the intersection of <a href="#work">ai engineering</a>
+      building at the intersection of <a href="#work">software engineering</a>
       and <a href="#work">cybersecurity</a>.
       three ventures, real revenue, products real people use.
     </p>
@@ -408,11 +408,11 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
   </p>
   <div class="about-cols">
     <div class="about-copy sr">
-      <p>my focus is <strong>ai engineering</strong> and <strong>cybersecurity</strong>. two spaces that define what software looks like for the next decade — most people are only thinking about one of them.</p>
+      <p>my focus is <strong>software engineering</strong> and <strong>cybersecurity</strong>. two spaces that define what software looks like for the next decade — most people are only thinking about one of them.</p>
       <p>i like hard problems with a real person at the end. every project i've shipped has had one.</p>
       <p>currently based in sugar land, tx. studying cs and looking for the next thing worth building.</p>
       <div class="atags">
-        <span class="atag">ai engineering</span>
+        <span class="atag">software engineering</span>
         <span class="atag">cybersecurity</span>
         <span class="atag">computer science</span>
         <span class="atag">full-stack</span>
@@ -534,7 +534,7 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
   <div class="sec-label sr">connect</div>
   <div class="connect-wrap">
     <div class="sr">
-      <p class="connect-lede">want to work together, need a site through <strong>Presence</strong>, or just want to talk ai and security? i'm easy to find.</p>
+      <p class="connect-lede">want to work together, need a site through <strong>Presence</strong>, or just want to talk software and security? i'm easy to find.</p>
       <div class="c-links">
         <a href="https://github.com/exotrezy" target="_blank" class="c-link">
           <span class="c-name">GitHub</span><span class="c-arr">↗</span>
@@ -575,7 +575,7 @@ const LINES=[
   {cmd:true,  text:'ls ./projects/'},
   {cmd:false, cls:'to', text:'CodeBridge/&nbsp;&nbsp;Traced/&nbsp;&nbsp;Presence/&nbsp;&nbsp;PrismPCs/'},
   {cmd:true,  text:'cat stack.json'},
-  {cmd:false, cls:'td', text:'{ "focus": ["AI Engineering", "Cybersecurity"] }'},
+  {cmd:false, cls:'td', text:'{ "focus": ["SOFTWARE Engineering", "Cybersecurity"] }'},
   {cmd:true,  text:'./deploy --prod'},
   {cmd:false, cls:'th', text:'✓ Live on mikaelsyed.me'},
 ];
