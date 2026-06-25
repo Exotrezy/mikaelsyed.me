@@ -430,24 +430,7 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
   </div>
 </div>
 
-<!-- ═══ PINNED SCROLL SCENE ═══ -->
-<!-- The container is tall (300vh). The sticky child stays pinned
-     while you scroll through it. Scroll progress 0→1 drives the
-     Three.js scene: camera flies forward, geometry morphs, text fades in. -->
-<div class="scroll-scene-container" id="scene-container">
-  <div class="scroll-scene-sticky" id="scene-sticky">
-    <canvas id="scene-canvas"></canvas>
-    <div class="scene-text" id="scene-text">
-      <div class="scene-text-line" id="stl1">building.</div>
-      <div class="scene-text-line dim" id="stl2">shipping.</div>
-      <div class="scene-text-line dim" id="stl3">learning.</div>
-    </div>
-    <div class="scene-progress-bar">
-      <span id="spb-label" style="font-family:var(--mono);font-size:10px;color:var(--faint)">0%</span>
-      <div class="spb-track"><div class="spb-fill" id="spb-fill"></div></div>
-    </div>
-  </div>
-</div>
+
 
 <!-- WORK -->
 <span class="rule"></span>
@@ -495,7 +478,7 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
       <span class="p-arr">↗</span>
     </a>
 
-    <div class="proj-item sr">
+    <a href="https://prismpcs.mikaelsyed.me" target="_blank" class="proj-item sr">
       <span class="p-idx">04</span>
       <div class="p-inner">
         <div class="p-row">
@@ -505,7 +488,8 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
         <span class="p-title">Prism PCs</span>
         <p class="p-desc">custom gaming pc business. every build specced and assembled by hand. over $10,000 in revenue. started because people wanted custom builds but didn't know how — so i did it for them.</p>
       </div>
-    </div>
+      <span class="p-arr">↗</span>
+    </a>
 
   </div>
 </div>
@@ -513,21 +497,7 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
 <!-- CONNECT -->
 <span class="rule"></span>
 
-<!-- ═══ SECOND PINNED SCROLL SCENE — helix ═══ -->
-<div class="scroll-scene-2-container" id="scene2-container">
-  <div class="scroll-scene-2-sticky">
-    <canvas id="scene2-canvas"></canvas>
-    <div class="scene2-text">
-      <div class="scene2-text-line" id="s2l1">four projects.</div>
-      <div class="scene2-text-line" id="s2l2">three ventures.</div>
-      <div class="scene2-text-line" id="s2l3">one direction.</div>
-    </div>
-    <div class="scene2-counter">
-      <div class="s2c-track"><div class="s2c-fill" id="s2c-fill"></div></div>
-      <span id="s2c-label" style="font-family:var(--mono);font-size:10px;color:var(--faint)">0%</span>
-    </div>
-  </div>
-</div>
+
 
 <span class="rule"></span>
 <div class="section" id="connect">
@@ -546,6 +516,13 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
           <div>
             <div class="c-name">Traced</div>
             <div class="c-sub">traced.mikaelsyed.me</div>
+          </div>
+          <span class="c-arr">↗</span>
+        </a>
+        <a href="https://prismpcs.mikaelsyed.me" target="_blank" class="c-link">
+          <div>
+            <div class="c-name">PrismPCs</div>
+            <div class="c-sub">prismpcs.mikaelsyed.me</div>
           </div>
           <span class="c-arr">↗</span>
         </a>
@@ -686,7 +663,7 @@ setTimeout(()=>{
   // outer wireframe
   const sGeo=new THREE.SphereGeometry(1,56,36);
   const edges=new THREE.EdgesGeometry(sGeo,6);
-  const wireMat=new THREE.LineBasicMaterial({color:0x20203c,transparent:true,opacity:.9});
+  const wireMat=new THREE.LineBasicMaterial({color:0x5555aa,transparent:true,opacity:1});
   const wire=new THREE.LineSegments(edges,wireMat);scene.add(wire);
 
   // inner fill
@@ -695,7 +672,7 @@ setTimeout(()=>{
 
   // surface dots + connections
   const dotGroup=new THREE.Group();scene.add(dotGroup);
-  const dMat=new THREE.MeshBasicMaterial({color:0x28285a,transparent:true,opacity:.8});
+  const dMat=new THREE.MeshBasicMaterial({color:0x6666cc,transparent:true,opacity:1});
   const positions=[];
   for(let i=0;i<90;i++){
     const theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
@@ -710,7 +687,7 @@ setTimeout(()=>{
         lineVerts.push(...positions[i].toArray(),...positions[j].toArray());
   const lGeo=new THREE.BufferGeometry();
   lGeo.setAttribute('position',new THREE.Float32BufferAttribute(lineVerts,3));
-  scene.add(new THREE.LineSegments(lGeo,new THREE.LineBasicMaterial({color:0x16163a,transparent:true,opacity:.55})));
+  scene.add(new THREE.LineSegments(lGeo,new THREE.LineBasicMaterial({color:0x4444aa,transparent:true,opacity:.85})));
 
   // drag
   let drag=false,lx=0,ly=0,vx=0,vy=.0015,rx=.25,ry=0;
@@ -731,345 +708,14 @@ setTimeout(()=>{
     ry+=vy;rx+=vx;rx=Math.max(-.7,Math.min(.7,rx));
     wire.rotation.y=ry;wire.rotation.x=rx+sy*.0004;
     dotGroup.rotation.y=ry*.97;dotGroup.rotation.x=rx*.97+sy*.0004;
-    wireMat.opacity=.55+.35*Math.sin(clk*.55);
+    wireMat.opacity=.75+.25*Math.sin(clk*.55);
     renderer.render(scene,cam);
   })();
 })();
 
-/* ══════════════════════════════════════════
-   PINNED SCROLL SCENE
-   ──────────────────────────────────────
-   The container is 300vh tall. The sticky
-   child stays visible for the full scroll.
-   progress 0→1 drives everything:
-     0.00–0.25 → camera flies in, geometry assembles
-     0.25–0.50 → text line 1 appears
-     0.50–0.75 → text line 2 appears, object morphs
-     0.75–1.00 → text line 3, camera pulls back
-══════════════════════════════════════════ */
-(function(){
-  const canvas=document.getElementById('scene-canvas');
-  if(!canvas)return;
-  const W=()=>canvas.offsetWidth,H=()=>canvas.offsetHeight;
 
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-  renderer.setClearColor(0,0);renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(W(),H());
 
-  const scene=new THREE.Scene();
-  const cam=new THREE.PerspectiveCamera(50,W()/H(),.1,200);
 
-  // ── torus knot ──
-  const knotGeo=new THREE.TorusKnotGeometry(1.2,.38,200,22,2,3);
-  const knotEdges=new THREE.EdgesGeometry(knotGeo,10);
-  const knotMat=new THREE.LineBasicMaterial({color:0x2a2a55,transparent:true,opacity:.0});
-  const knot=new THREE.LineSegments(knotEdges,knotMat);
-  scene.add(knot);
-
-  // ── outer orbit rings ──
-  const ringGroup=new THREE.Group();scene.add(ringGroup);
-  [1.8,2.5,3.2].forEach((r,i)=>{
-    const rg=new THREE.TorusGeometry(r,.008,6,100);
-    const rl=new THREE.LineLoop(rg,new THREE.LineBasicMaterial({color:0x14142a,transparent:true,opacity:.0}));
-    rl.rotation.x=Math.PI/2*(i*.3+.4);rl.rotation.z=i*.5;
-    rl.userData.baseOpacity=.15+i*.08;
-    ringGroup.add(rl);
-  });
-
-  // ── particle field around the knot ──
-  const pGeo=new THREE.BufferGeometry();
-  const N=500;const pPos=new Float32Array(N*3);
-  for(let i=0;i<N;i++){
-    const r=3+Math.random()*3;
-    const theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
-    pPos[i*3]=r*Math.sin(phi)*Math.cos(theta);
-    pPos[i*3+1]=r*Math.sin(phi)*Math.sin(theta);
-    pPos[i*3+2]=r*Math.cos(phi);
-  }
-  pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));
-  const pMat=new THREE.PointsMaterial({color:0x1a1a38,size:.06,transparent:true,opacity:0,sizeAttenuation:true});
-  scene.add(new THREE.Points(pGeo,pMat));
-
-  // text lines
-  const tl1=document.getElementById('stl1');
-  const tl2=document.getElementById('stl2');
-  const tl3=document.getElementById('stl3');
-  const spbFill=document.getElementById('spb-fill');
-  const spbLabel=document.getElementById('spb-label');
-
-  const container=document.getElementById('scene-container');
-
-  function lerp(a,b,t){return a+(b-a)*t}
-  function clamp01(v){return Math.max(0,Math.min(1,v))}
-  function ease(t){return t<.5?2*t*t:(1-Math.pow(-2*t+2,2)/2)}
-
-  window.addEventListener('resize',()=>{
-    cam.aspect=W()/H();cam.updateProjectionMatrix();renderer.setSize(W(),H());
-  },{passive:true});
-
-  let autoRot=0,clk=0;
-  (function frame(){
-    requestAnimationFrame(frame);
-    clk+=.008;
-
-    // ── calculate scroll progress ──
-    const rect=container.getBoundingClientRect();
-    const totalScroll=container.offsetHeight-window.innerHeight;
-    // how many px have scrolled past the top of the container
-    const scrolled=Math.max(0,-rect.top);
-    const progress=clamp01(scrolled/totalScroll);
-    const ep=ease(progress);
-
-    // update progress bar
-    spbFill.style.width=(progress*100).toFixed(1)+'%';
-    spbLabel.textContent=Math.round(progress*100)+'%';
-
-    // ── camera ──
-    // starts far away (z=18), flies into z=5, then pulls back out to z=12
-    const camZ = progress<.5
-      ? lerp(18,5,ep*2)
-      : lerp(5,12,(ep-.5)*2);
-    cam.position.z=camZ;
-    cam.position.y=Math.sin(clk*.2)*.3;
-
-    // ── knot rotation — directly scroll-driven ──
-    autoRot+=.006;
-    knot.rotation.x=autoRot*.4+progress*Math.PI*1.5;
-    knot.rotation.y=autoRot*.6+progress*Math.PI*2.2;
-    knot.rotation.z=autoRot*.2;
-
-    // ── knot opacity: fade in 0→0.25, full 0.25→0.85, fade 0.85→1 ──
-    const kO = progress<.15 ? clamp01(progress/.15)
-              : progress>.9  ? clamp01(1-(progress-.9)/.1)
-              : 1;
-    knotMat.opacity=kO*.75;
-
-    // ── rings: fade in and rotate ──
-    ringGroup.children.forEach((ring,i)=>{
-      const rP=clamp01((progress-.05)/.3);
-      ring.material.opacity=rP*ring.userData.baseOpacity;
-      ring.rotation.y+=.002*(i+1);
-    });
-    ringGroup.rotation.y=progress*Math.PI*.8;
-
-    // ── particles ──
-    pMat.opacity=clamp01((progress-.1)/.3)*.4;
-
-    // ── scale knot: starts tiny, grows to 1, pinches at end ──
-    const sc = progress<.3 ? lerp(.1,1,clamp01(progress/.3))
-              : progress>.85? lerp(1,.6,clamp01((progress-.85)/.15))
-              : 1;
-    knot.scale.setScalar(sc);
-
-    // ── text lines — fade in based on scroll progress ──
-    const t1a=clamp01((progress-.2)/.15);
-    const t2a=clamp01((progress-.42)/.15);
-    const t3a=clamp01((progress-.64)/.15);
-
-    tl1.style.color=`rgba(235,235,235,${t1a*.85})`;
-    tl1.style.transform=`translateY(${lerp(20,0,t1a)}px)`;
-    tl2.style.color=`rgba(170,170,188,${t2a*.6})`;
-    tl2.style.transform=`translateY(${lerp(20,0,t2a)}px)`;
-    tl3.style.color=`rgba(130,130,148,${t3a*.45})`;
-    tl3.style.transform=`translateY(${lerp(20,0,t3a)}px)`;
-
-    renderer.render(scene,cam);
-  })();
-})();
-
-/* ══════════════════════════════════════════
-   SECOND PINNED SCROLL SCENE — double helix
-   Left side: geometry. Right side: text.
-   Scroll drives: helix uncoiling, camera
-   drift, particle trail, strand separation
-══════════════════════════════════════════ */
-(function(){
-  const canvas=document.getElementById('scene2-canvas');
-  if(!canvas)return;
-  const W=()=>canvas.offsetWidth, H=()=>canvas.offsetHeight;
-
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-  renderer.setClearColor(0,0);
-  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
-  renderer.setSize(W(),H());
-
-  const scene=new THREE.Scene();
-  const cam=new THREE.PerspectiveCamera(52,W()/H(),.1,200);
-  cam.position.set(-3,0,14);
-  cam.lookAt(0,0,0);
-
-  function lerp(a,b,t){return a+(b-a)*t}
-  function clamp01(v){return Math.max(0,Math.min(1,v))}
-  function easeInOut(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
-
-  /* ── build double helix as line segments ── */
-  const TURNS   = 6;      // full rotations
-  const STEPS   = 320;    // points per strand
-  const RADIUS  = 1.1;
-  const HEIGHT  = 8;      // total height of helix
-
-  // strand geometry — we'll update positions each frame
-  function makeStrand(phaseOffset, color){
-    const pts = new Float32Array(STEPS*3);
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(pts, 3));
-    const mat = new THREE.LineBasicMaterial({color, transparent:true, opacity:0});
-    const line = new THREE.Line(geo, mat);
-    line.userData = {phaseOffset};
-    scene.add(line);
-    return {line, geo, mat, pts};
-  }
-
-  const strandA = makeStrand(0,       0x252545);
-  const strandB = makeStrand(Math.PI, 0x1c1c38);
-
-  /* rungs connecting the two strands */
-  const RUNG_COUNT = TURNS * 4;
-  const rungMats = [];
-  const rungGroup = new THREE.Group();
-  scene.add(rungGroup);
-  for(let i=0;i<RUNG_COUNT;i++){
-    const rGeo = new THREE.BufferGeometry();
-    rGeo.setAttribute('position', new THREE.Float32BufferAttribute([0,0,0, 0,0,0],3));
-    const rMat = new THREE.LineBasicMaterial({color:0x141430,transparent:true,opacity:0});
-    rungMats.push(rMat);
-    rungGroup.add(new THREE.Line(rGeo, rMat));
-  }
-
-  /* particle trail along helix */
-  const TRAIL = 120;
-  const trailPos = new Float32Array(TRAIL*3);
-  const trailGeo = new THREE.BufferGeometry();
-  trailGeo.setAttribute('position', new THREE.BufferAttribute(trailPos,3));
-  const trailMat = new THREE.PointsMaterial({color:0x2a2a55,size:.08,transparent:true,opacity:0,sizeAttenuation:true});
-  scene.add(new THREE.Points(trailGeo, trailMat));
-
-  /* ambient particle cloud */
-  const cloudN = 300;
-  const cloudPos = new Float32Array(cloudN*3);
-  for(let i=0;i<cloudN;i++){
-    cloudPos[i*3]   = (Math.random()-.5)*18;
-    cloudPos[i*3+1] = (Math.random()-.5)*12;
-    cloudPos[i*3+2] = (Math.random()-.5)*8;
-  }
-  const cloudGeo = new THREE.BufferGeometry();
-  cloudGeo.setAttribute('position', new THREE.BufferAttribute(cloudPos,3));
-  scene.add(new THREE.Points(cloudGeo,
-    new THREE.PointsMaterial({color:0x111128,size:.05,transparent:true,opacity:.5,sizeAttenuation:true})));
-
-  /* text refs */
-  const s2l1 = document.getElementById('s2l1');
-  const s2l2 = document.getElementById('s2l2');
-  const s2l3 = document.getElementById('s2l3');
-  const s2fill = document.getElementById('s2c-fill');
-  const s2label = document.getElementById('s2c-label');
-  const container2 = document.getElementById('scene2-container');
-
-  function updateStrand(strand, progress){
-    const {pts, geo, line} = strand;
-    const phase = strand.line.userData.phaseOffset;
-    // "uncoil" effect: helix reveals from bottom to top as progress increases
-    const visibleSteps = Math.floor(STEPS * Math.min(1, progress * 2.2));
-
-    for(let i=0;i<STEPS;i++){
-      const t  = i/(STEPS-1);
-      const y  = (t-.5)*HEIGHT;
-      const angle = t*TURNS*Math.PI*2 + phase;
-      // separation grows with scroll — strands pull apart slightly
-      const sep = 1 + progress*.35;
-      const x  = Math.cos(angle)*RADIUS*sep;
-      const z  = Math.sin(angle)*RADIUS*.6*sep;
-      pts[i*3]   = i < visibleSteps ? x : 0;
-      pts[i*3+1] = i < visibleSteps ? y : -HEIGHT/2;
-      pts[i*3+2] = i < visibleSteps ? z : 0;
-    }
-    geo.attributes.position.needsUpdate = true;
-    strand.mat.opacity = clamp01(progress*3)*.8;
-  }
-
-  function updateRungs(progress){
-    const sep = 1 + progress*.35;
-    const visibleRungs = Math.floor(RUNG_COUNT * Math.min(1, progress*2));
-    for(let i=0;i<RUNG_COUNT;i++){
-      const t = i/(RUNG_COUNT-1);
-      const y = (t-.5)*HEIGHT;
-      const angle = t*TURNS*Math.PI*2;
-      const xA = Math.cos(angle)*RADIUS*sep;
-      const zA = Math.sin(angle)*RADIUS*.6*sep;
-      const xB = Math.cos(angle+Math.PI)*RADIUS*sep;
-      const zB = Math.sin(angle+Math.PI)*RADIUS*.6*sep;
-      const pos = rungGroup.children[i].geometry.attributes.position;
-      if(i < visibleRungs){
-        pos.setXYZ(0, xA, y, zA);
-        pos.setXYZ(1, xB, y, zB);
-      } else {
-        pos.setXYZ(0,0,-HEIGHT/2,0);
-        pos.setXYZ(1,0,-HEIGHT/2,0);
-      }
-      pos.needsUpdate = true;
-      rungMats[i].opacity = clamp01((progress-.05)*4)*0.18;
-    }
-  }
-
-  let clk=0;
-  window.addEventListener('resize',()=>{
-    cam.aspect=W()/H();cam.updateProjectionMatrix();renderer.setSize(W(),H());
-  },{passive:true});
-
-  (function frame(){
-    requestAnimationFrame(frame);
-    clk+=.007;
-
-    const rect = container2.getBoundingClientRect();
-    const totalScroll = container2.offsetHeight - window.innerHeight;
-    const scrolled = Math.max(0,-rect.top);
-    const progress = clamp01(scrolled/totalScroll);
-    const ep = easeInOut(progress);
-
-    s2fill.style.width=(progress*100).toFixed(1)+'%';
-    s2label.textContent=Math.round(progress*100)+'%';
-
-    // update geometry
-    updateStrand(strandA, ep);
-    updateStrand(strandB, ep);
-    updateRungs(ep);
-
-    // trail particles follow strand A tip
-    const tipIdx = Math.min(STEPS-1, Math.floor(STEPS*Math.min(1,ep*2.2)));
-    for(let i=0;i<TRAIL;i++){
-      const si = Math.max(0, tipIdx-i);
-      trailPos[i*3]   = strandA.pts[si*3];
-      trailPos[i*3+1] = strandA.pts[si*3+1];
-      trailPos[i*3+2] = strandA.pts[si*3+2];
-    }
-    trailGeo.attributes.position.needsUpdate=true;
-    trailMat.opacity = clamp01(ep*4)*.6;
-
-    // camera: slow orbit around the helix, slight push forward
-    const camX = lerp(-3,-1.5,ep) + Math.sin(clk*.18)*.4;
-    const camZ = lerp(14,10,ep);
-    cam.position.set(camX, Math.sin(clk*.12)*1.2, camZ);
-    cam.lookAt(0,0,0);
-
-    // slow auto-rotation of whole helix
-    rungGroup.rotation.y = clk*.06;
-    strandA.line.rotation.y = clk*.06;
-    strandB.line.rotation.y = clk*.06;
-
-    // text
-    const t1a = clamp01((ep-.18)/.16);
-    const t2a = clamp01((ep-.42)/.16);
-    const t3a = clamp01((ep-.66)/.16);
-
-    s2l1.style.color=`rgba(235,235,235,${t1a*.8})`;
-    s2l1.style.transform=`translateX(${lerp(24,0,t1a)}px)`;
-    s2l2.style.color=`rgba(180,180,198,${t2a*.65})`;
-    s2l2.style.transform=`translateX(${lerp(24,0,t2a)}px)`;
-    s2l3.style.color=`rgba(140,140,160,${t3a*.5})`;
-    s2l3.style.transform=`translateX(${lerp(24,0,t3a)}px)`;
-
-    renderer.render(scene,cam);
-  })();
-})();
 
 /* ══════════════════════════════════════════
    ICOSAHEDRON — connect section
