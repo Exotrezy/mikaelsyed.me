@@ -4,468 +4,426 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>mikael syed</title>
-<meta name="description" content="CS student & builder based in Sugar Land, TX. Co-founded CodeBridge, built Traced, Presence, and Prism PCs. Focused on software engineering and cybersecurity."/>
+<meta name="description" content="CS & ECE student based in Houston, TX. Building at the intersection of hardware and software."/>
 <link rel="canonical" href="https://mikaelsyed.me"/>
-
-<!-- Open Graph -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://mikaelsyed.me"/>
-<meta property="og:title" content="Mikael Syed — CS Student & Builder"/>
-<meta property="og:description" content="Co-founded CodeBridge, built Traced, Presence, and Prism PCs. Software engineering & cybersecurity. Based in Sugar Land, TX."/>
+<meta property="og:title" content="Mikael Syed"/>
+<meta property="og:description" content="CS & ECE student. Building at the intersection of hardware and software."/>
 <meta property="og:image" content="https://mikaelsyed.me/og-image.png"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
 <meta property="og:site_name" content="Mikael Syed"/>
-
-<!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Mikael Syed — CS Student & Builder"/>
-<meta name="twitter:description" content="Co-founded CodeBridge, built Traced, Presence, and Prism PCs. Software engineering & cybersecurity."/>
+<meta name="twitter:title" content="Mikael Syed"/>
+<meta name="twitter:description" content="CS & ECE student. Building at the intersection of hardware and software."/>
 <meta name="twitter:image" content="https://mikaelsyed.me/og-image.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:auto} /* we handle scroll manually for pinned sections */
 
 :root{
   --bg:#08080f;
-  --fg:#ebebeb;
-  --sub:#aaaabc;
-  --dim:#ababb3;
-  --faint:#686870;
-  --rule:#181828;
-  --mono:'Fira Code',monospace;
-  --sans:'Inter',system-ui,sans-serif;
+  --fg:#e8e8e8;
+  --mid:#aaaabc;
+  --muted:#686878;
+  --under:rgba(255,255,255,.15);
+}
+html.light{
+  --bg:#ffffff;
+  --fg:#111111;
+  --mid:#444444;
+  --muted:#888888;
+  --under:rgba(0,0,0,.18);
 }
 
 body{
   background:var(--bg);
   color:var(--fg);
-  font-family:var(--sans);
-  font-weight:300;
-  font-size:15px;
-  line-height:1.7;
-  overflow-x:hidden;
+  font-family:'Instrument Sans',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.75;
   -webkit-font-smoothing:antialiased;
+  transition:background .25s,color .25s;
+  padding:0 20px;
 }
 
-/* ─── starfield ─── */
-#starfield{
-  position:fixed;inset:0;
-  width:100%;height:100%;
-  pointer-events:none;z-index:0;
+.page{
+  max-width:580px;
+  margin:0 auto;
+  padding:48px 0 80px;
 }
 
-
-/* ─── site ─── */
-#site{position:relative;z-index:1;opacity:1}
-
-/* ─── nav ─── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:22px 48px;
-  transition:background .35s,border-color .35s;
-  border-bottom:1px solid transparent;
+/* ── header ── */
+header{ margin-bottom:48px; }
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
 }
-nav.scrolled{background:rgba(8,8,15,.88);backdrop-filter:blur(16px);border-color:var(--rule)}
-.nav-logo{font-family:var(--mono);font-size:12px;color:var(--dim);text-decoration:none;letter-spacing:.04em;transition:color .2s}
-.nav-logo:hover{color:var(--fg)}
-.nav-right{display:flex;align-items:center;gap:18px}
-.nav-link{font-family:var(--mono);font-size:11px;color:var(--dim);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
-.nav-link:hover{color:var(--fg)}
-.nav-sep{width:1px;height:18px;background:var(--rule)}
-.nav-icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid var(--rule);color:var(--dim);text-decoration:none;transition:border-color .2s,color .2s}
-.nav-icon:hover{border-color:var(--dim);color:var(--fg)}
-.nav-icon svg{width:15px;height:15px;fill:currentColor}
+.site-name{
+  font-size:16px;
+  font-weight:600;
+  color:var(--fg);
+}
+.header-right{
+  display:flex;align-items:center;gap:16px;
+}
+.header-right a{
+  font-size:14px;color:var(--muted);
+  text-decoration:none;transition:color .15s;
+}
+.header-right a:hover{color:var(--fg)}
 
-/* ─── hero ─── */
-#hero{
-  min-height:100svh;display:flex;flex-direction:column;
-  justify-content:center;padding:130px 48px 80px;
-  position:relative;overflow:hidden;
+#theme-btn{
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);padding:0;
+  display:flex;align-items:center;
+  transition:color .15s;
+}
+#theme-btn:hover{color:var(--fg)}
+#theme-btn svg{
+  width:16px;height:16px;
+  fill:none;stroke:currentColor;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+}
+
+.contact-row{
+  display:flex;flex-wrap:wrap;gap:6px 16px;
+  font-size:14px;
+}
+.contact-row a{
+  color:var(--muted);
+  text-decoration:none;
+  transition:color .15s;
+}
+.contact-row a:hover{color:var(--fg)}
+
+/* ── hero ── */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  align-items:center;
+  margin-bottom:52px;
+}
+.hero-globe{
+  position:relative;
+  height:220px;
 }
 #globe-canvas{
-  position:absolute;right:0;
-  top:50%;transform:translateY(-44%);
-  width:52%;height:86%;
-  pointer-events:auto;z-index:0;opacity:.95;
-}
-.hero-text{position:relative;z-index:2;max-width:520px}
-.hero-eye{
-  font-family:var(--mono);font-size:11px;color:var(--dim);
-  letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;
-  opacity:0;animation:up .5s .1s forwards;
-}
-.hero-name{
-  font-size:clamp(56px,9vw,110px);font-weight:400;line-height:.92;
-  letter-spacing:-.03em;color:var(--fg);margin-bottom:6px;
-  opacity:0;animation:up .65s .18s forwards;
-}
-.hero-name-sub{
-  font-size:clamp(56px,9vw,110px);font-weight:300;line-height:.92;
-  letter-spacing:-.03em;color:var(--faint);margin-bottom:48px;
-  opacity:0;animation:up .65s .26s forwards;
-}
-.hero-bio{
-  font-size:16px;color:var(--sub);line-height:1.85;
-  max-width:420px;margin-bottom:40px;
-  opacity:0;animation:up .6s .36s forwards;
-}
-.hero-bio a{color:var(--fg);border-bottom:1px solid var(--faint);text-decoration:none;transition:border-color .2s}
-.hero-bio a:hover{border-color:var(--dim)}
-@keyframes up{to{opacity:1;transform:none}}
-
-/* ─── page wrapper ─── */
-.page{position:relative;z-index:2}
-
-/* ─── section ─── */
-.section{max-width:960px;margin:0 auto;padding:100px 48px}
-
-/* ─── about ─── */
-.about-lede{
-  font-size:clamp(20px,2.8vw,28px);font-weight:300;
-  color:var(--sub);line-height:1.5;letter-spacing:-.01em;
-  margin-bottom:40px;
-}
-.about-lede strong{color:var(--fg);font-weight:400}
-.about-lede a{color:var(--sub);border-bottom:1px solid var(--faint);text-decoration:none;transition:color .2s,border-color .2s}
-.about-lede a:hover{color:var(--fg);border-color:var(--dim)}
-.about-copy p{font-size:15px;color:var(--dim);line-height:1.95;margin-bottom:16px;font-weight:300}
-.about-copy p:last-child{margin:0}
-.about-copy strong{color:var(--sub);font-weight:400}
-
-/* ─── PINNED SCROLL SCENE ─── */
-/* tall scroll container — provides the scroll distance */
-.scroll-scene-container{
-  position:relative;
-  /* 300vh = scene is pinned while you scroll 2 full screens worth */
-  height:300vh;
-}
-.scroll-scene-sticky{
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:hidden;
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-}
-#scene-canvas{
-  position:absolute;inset:0;width:100%;height:100%;display:block;
-}
-/* text that animates within the pinned scene */
-.scene-text{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  justify-content:center;padding:0 48px;
-  pointer-events:none;z-index:2;
-}
-.scene-text-line{
-  font-size:clamp(40px,7vw,88px);
-  font-weight:300;line-height:.95;
-  letter-spacing:-.03em;
-  color:rgba(235,235,235,.0);  /* starts invisible */
-  transition:none;
-  will-change:color,transform,opacity;
-}
-.scene-text-line.dim{color:rgba(235,235,235,.0);font-weight:200}
-.scene-progress-bar{
-  position:absolute;bottom:40px;right:48px;
-  display:flex;align-items:center;gap:12px;
-  font-family:var(--mono);font-size:10px;color:var(--faint);
-}
-.spb-track{width:80px;height:1px;background:var(--rule);overflow:hidden}
-.spb-fill{height:100%;background:var(--dim);width:0;transition:none}
-
-/* ─── SECOND PINNED SCROLL SCENE (DNA/helix) ─── */
-.scroll-scene-2-container{
-  position:relative;
-  height:280vh;
-}
-.scroll-scene-2-sticky{
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow:hidden;
-  border-top:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-}
-#scene2-canvas{
-  position:absolute;inset:0;width:100%;height:100%;display:block;
-}
-.scene2-text{
   position:absolute;inset:0;
-  display:flex;flex-direction:column;
-  justify-content:center;
-  align-items:flex-end;
-  padding:0 64px;
-  pointer-events:none;z-index:2;
-  text-align:right;
+  width:100%;height:100%;
 }
-.scene2-text-line{
-  font-size:clamp(36px,6vw,78px);
-  font-weight:300;line-height:.96;
-  letter-spacing:-.03em;
-  color:rgba(235,235,235,0);
-  will-change:color,transform;
+.hero-text h1{
+  font-size:17px;
+  font-weight:600;
+  color:var(--fg);
+  line-height:1.4;
+  margin-bottom:10px;
 }
-.scene2-counter{
-  position:absolute;bottom:40px;left:48px;
-  font-family:var(--mono);font-size:10px;color:var(--faint);
-  display:flex;align-items:center;gap:12px;
+.hero-text p{
+  font-size:15px;
+  color:var(--mid);
+  line-height:1.75;
 }
-.s2c-track{width:80px;height:1px;background:var(--rule);overflow:hidden}
-.s2c-fill{height:100%;background:var(--dim);width:0}
 
-/* ─── projects ─── */
-.proj-list{display:flex;flex-direction:column;gap:40px}
-.proj-item{
-  display:flex;justify-content:space-between;align-items:flex-start;
-  text-decoration:none;color:inherit;
+/* ── sections ── */
+.section{margin-bottom:44px}
+.section h2{
+  font-size:13px;
+  font-weight:600;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  margin-bottom:14px;
 }
-.p-inner{display:flex;flex-direction:column;gap:6px}
-.p-title{font-size:20px;font-weight:400;color:var(--sub);letter-spacing:-.01em;transition:color .2s}
-.p-type{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase}
-.p-desc{font-size:14px;color:var(--dim);line-height:1.9;font-weight:300;max-width:560px}
-.p-arr{font-size:13px;color:var(--dim);opacity:.2;transition:opacity .2s,transform .2s;flex-shrink:0;padding-top:4px}
-a.proj-item:hover .p-title{color:var(--fg)}
-a.proj-item:hover .p-arr{opacity:.6;transform:translate(3px,-3px)}
-
-/* ─── connect ─── */
-.plain-links{display:flex;flex-direction:column;gap:0}
-.connect-lede{font-size:clamp(15px,2vw,18px);font-weight:300;color:var(--sub);line-height:1.65;margin-bottom:32px;max-width:480px}
-.connect-lede strong{color:var(--fg);font-weight:400}
-.pl-link{
-  display:block;font-size:17px;font-weight:300;color:var(--sub);
-  text-decoration:none;padding:10px 0;
-  transition:color .2s;
+.section p{
+  font-size:15px;
+  color:var(--mid);
+  line-height:1.8;
+  margin-bottom:10px;
 }
-.pl-link:hover{color:var(--fg)}
-.pl-sub{font-family:var(--mono);font-size:10px;color:var(--faint);margin-left:10px;letter-spacing:.04em}
+.section p:last-child{margin:0}
+.section strong{color:var(--fg);font-weight:500}
+.section a{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
 
-/* ─── footer ─── */
+/* ── work ── */
+.work-list{display:flex;flex-direction:column;gap:18px}
+.work-item{display:block}
+.wi-meta{font-size:13px;color:var(--muted);margin-bottom:1px}
+.wi-name{
+  font-size:15px;
+  color:var(--fg);font-weight:500;
+  display:inline;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  text-decoration-color:var(--under);
+  transition:text-decoration-color .15s;
+}
+.wi-name:hover{text-decoration-color:var(--fg)}
+.wi-desc{font-size:14px;color:var(--mid);line-height:1.7;margin-top:4px}
+
+/* ── photo grid ── */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:16px;
+}
+.photo-wrap{
+  position:relative;
+  overflow:hidden;
+  border-radius:6px;
+  aspect-ratio:3/4;
+  cursor:crosshair;
+}
+.photo-wrap.wide{
+  grid-column:1/-1;
+  aspect-ratio:16/7;
+}
+.photo-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .3s ease;
+}
+.photo-wrap:hover img{transform:scale(1.03)}
+
+/* cursor-following caption — positioned via JS */
+.cursor-caption{
+  position:fixed;
+  pointer-events:none;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:'Instrument Sans',system-ui,sans-serif;
+  font-size:12px;
+  padding:5px 11px;
+  border-radius:20px;
+  white-space:nowrap;
+  opacity:0;
+  transition:opacity .15s;
+  z-index:1000;
+  transform:translate(14px, -50%);
+}
+html.light .cursor-caption{
+  background:#fff;
+  box-shadow:0 1px 8px rgba(0,0,0,.12);
+}
+
+/* ── footer ── */
 footer{
-  border-top:1px solid var(--rule);padding:24px 48px;
-  display:flex;justify-content:space-between;align-items:center;
-  max-width:960px;margin:0 auto;
+  margin-top:52px;
+  font-size:13px;
+  color:var(--muted);
 }
-footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.04em}
+footer a{
+  color:var(--muted);
+  text-decoration:underline;
+  text-underline-offset:3px;
+  transition:color .15s;
+}
+footer a:hover{color:var(--fg)}
 
-/* ─── mobile ─── */
-@media(max-width:700px){
-  nav{padding:18px 24px}
-  .nav-link{display:none}
-  #hero{padding:110px 24px 72px}
-  #globe-canvas{width:100%;height:50%;top:auto;bottom:0;transform:none;opacity:.3}
-  .hero-text{max-width:100%}
-  .page .section{padding:72px 24px}
-  .scene-text{padding:0 24px}
-  .connect-wrap{grid-template-columns:1fr}
-  footer{padding:20px 24px;flex-direction:column;gap:6px;text-align:center}
+/* ── mobile ── */
+@media(max-width:520px){
+  .page{padding:32px 0 60px}
+  header{margin-bottom:36px}
+  .header-right{gap:12px}
+  .hero{grid-template-columns:1fr;gap:16px}
+  .hero-globe{height:200px}
+  .photo-grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 <body>
 
-<canvas id="starfield"></canvas>
-
-<div id="site">
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo">mikael syed</a>
-  <div class="nav-right">
-    <a href="#about" class="nav-link">about</a>
-    <a href="#work" class="nav-link">work</a>
-    <a href="#connect" class="nav-link">connect</a>
-    <div class="nav-sep"></div>
-    <a href="https://mikaelsyed.me/resume" class="nav-link">resume</a>
-    <div class="nav-sep"></div>
-    <a href="https://github.com/exotrezy" target="_blank" class="nav-icon" aria-label="GitHub">
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.746 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-    </a>
-    <a href="https://www.linkedin.com/in/mikael-syed-ms/" target="_blank" class="nav-icon" aria-label="Linkedin">
-      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    </a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <canvas id="globe-canvas"></canvas>
-  <div class="hero-text">
-    <p class="hero-eye">cs student &amp; builder — sugar land, tx</p>
-    <h1 class="hero-name">mikael</h1>
-    <p class="hero-name-sub">syed.</p>
-    <p class="hero-bio">
-      building at the intersection of <a href="#work">software engineering</a>
-      and <a href="#work">cybersecurity</a>.
-      three ventures, real revenue, products real people use.
-    </p>
-  </div>
-
-</section>
+<!-- cursor-following caption (shared, moved by JS) -->
+<div class="cursor-caption" id="cursor-caption"></div>
 
 <div class="page">
 
-<!-- ABOUT -->
-<div class="section" id="about">
-  <p class="about-lede">
-    i'm <strong>mikael syed</strong> — a cs student who builds things instead of talking about them.
-    co-founded a <a href="#work">nonprofit</a>, shipped a <a href="#work">chrome extension</a>
-    from scratch, started an <a href="#work">agency</a>, and ran a <a href="#work">hardware business</a> — all at once.
-  </p>
-  <div class="about-copy">
-    <p>my focus is <strong>software engineering</strong> and <strong>cybersecurity</strong>. two spaces that define what software looks like for the next decade — most people are only thinking about one of them.</p>
-    <p>i like hard problems with a real person at the end. every project i've shipped has had one. three ventures, $10k+ in revenue, four projects actually out in the world.</p>
-    <p>currently based in sugar land, tx. studying cs and looking for the next thing worth building.</p>
+  <header>
+    <div class="header-top">
+      <span class="site-name">mikael syed</span>
+      <div class="header-right">
+        <a href="#work">work</a>
+        <a href="#contact">contact</a>
+        <a href="https://mikaelsyed.me/resume" target="_blank">resume</a>
+        <button id="theme-btn" aria-label="Toggle theme">
+          <svg id="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="icon-sun" viewBox="0 0 24 24" style="display:none">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="contact-row">
+      <a href="https://github.com/exotrezy" target="_blank">github</a>
+      <a href="https://www.linkedin.com/in/mikael-syed-9344b12b3/" target="_blank">linkedin</a>
+      <a href="mailto:mikael@mikaelsyed.me">email</a>
+      <a href="https://traced.mikaelsyed.me" target="_blank">traced</a>
+      <a href="https://prismpcs.mikaelsyed.me" target="_blank">prism pcs</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-globe">
+      <canvas id="globe-canvas"></canvas>
+    </div>
+    <div class="hero-text">
+      <h1>cs &amp; ece student,<br>houston tx.</h1>
+      <p>building at the intersection of hardware and software.</p>
+    </div>
   </div>
-</div>
 
-<!-- WORK -->
-<div class="section" id="work">
-  <div class="proj-list">
-
-    <a href="https://codebridgeusa.org" class="proj-item">
-      <div class="p-inner">
-        <span class="p-title">CodeBridge</span>
-        <span class="p-type">nonprofit · co-founder</span>
-        <p class="p-desc">teaches kids to code and prepares them for harder coursework and technical certifications. built from zero because the gap was real and nobody was closing it the right way.</p>
-      </div>
-      <span class="p-arr">↗</span>
-    </a>
-
-    <a href="https://traced.mikaelsyed.me" target="_blank" class="proj-item">
-      <div class="p-inner">
-        <span class="p-title">Traced</span>
-        <span class="p-type">chrome extension · solo</span>
-        <p class="p-desc">know when your emails are opened and when links inside them get clicked. completely free — no watermarks, no monthly cap. every other tracker either charges you or brands your emails. traced does neither.</p>
-      </div>
-      <span class="p-arr">↗</span>
-    </a>
-
-    <a href="https://presencehtx.com" class="proj-item">
-      <div class="p-inner">
-        <span class="p-title">Presence</span>
-        <span class="p-type">agency · co-founder</span>
-        <p class="p-desc">a web dev company that builds custom sites for clients. no templates, no shortcuts. every project starts from a blank file.</p>
-      </div>
-      <span class="p-arr">↗</span>
-    </a>
-
-    <a href="https://prismpcs.mikaelsyed.me" target="_blank" class="proj-item">
-      <div class="p-inner">
-        <span class="p-title">Prism PCs</span>
-        <span class="p-type">hardware · founder</span>
-        <p class="p-desc">custom gaming pc business. every build specced and assembled by hand. over $10,000 in revenue. started because people wanted custom builds but didn't know how — so i did it for them.</p>
-      </div>
-      <span class="p-arr">↗</span>
-    </a>
-
+  <div class="section" id="about">
+    <h2>about</h2>
+    <p>i built my first pc when i was 12, just to see if i could. that eventually turned into <strong>Prism PCs</strong>, a custom pc business that did over $10k in revenue.</p>
+    <p>before that i was deep in fortnite creative, building maps that hit <strong>4k+ concurrent players</strong> and made over <strong>$1,000</strong>. that's probably where i figured out i liked making things people actually use.</p>
+    <p>i interned at <strong>Magic Hour</strong>, an AI company, working on a voice dataset pipeline for voice cloning. i'm studying cs and ece, with a long-term focus on computer engineering, where hardware and software actually meet.</p>
+    <p>i also co-founded <strong>CodeBridge</strong> to teach kids to code in middle schools, started a web agency called <strong>Presence</strong>, and shipped a chrome extension called <strong>Traced</strong>.</p>
   </div>
-</div>
 
-<!-- CONNECT -->
-<div class="section" id="connect">
-  <div class="plain-links">
-    <p class="connect-lede">want to work together, need a site through <strong>Presence</strong>, or just want to talk software and security? i'm easy to find.</p>
-    <a href="https://mikaelsyed.me/resume" class="pl-link">Resume <span class="pl-sub">mikaelsyed.me/resume</span></a>
-    <a href="https://github.com/exotrezy" target="_blank" class="pl-link">GitHub</a>
-    <a href="https://www.linkedin.com/in/mikael-syed-9344b12b3/" target="_blank" class="pl-link">LinkedIn</a>
-    <a href="https://traced.mikaelsyed.me" target="_blank" class="pl-link">Traced <span class="pl-sub">traced.mikaelsyed.me</span></a>
-    <a href="https://prismpcs.mikaelsyed.me" target="_blank" class="pl-link">PrismPCs <span class="pl-sub">prismpcs.mikaelsyed.me</span></a>
+  <div class="section" id="work">
+    <h2>work</h2>
+    <div class="work-list">
+
+      <div class="work-item">
+        <div class="wi-meta">nonprofit · co-founder</div>
+        <a href="https://codebridgeusa.org" target="_blank" class="wi-name">CodeBridge</a>
+        <div class="wi-desc">teaches kids to code in middle schools. built from zero because the gap was real.</div>
+      </div>
+
+      <div class="work-item">
+        <div class="wi-meta">chrome extension · solo</div>
+        <a href="https://traced.mikaelsyed.me" target="_blank" class="wi-name">Traced</a>
+        <div class="wi-desc">know when your emails are opened and links get clicked. completely free — no watermarks, no monthly cap.</div>
+      </div>
+
+      <div class="work-item">
+        <div class="wi-meta">agency · co-founder</div>
+        <a href="https://presencehtx.com" target="_blank" class="wi-name">Presence</a>
+        <div class="wi-desc">web dev company that builds custom sites. no templates, no shortcuts.</div>
+      </div>
+
+      <div class="work-item">
+        <div class="wi-meta">hardware · founder · $10k+ revenue</div>
+        <a href="https://prismpcs.mikaelsyed.me" target="_blank" class="wi-name">Prism PCs</a>
+        <div class="wi-desc">custom gaming pc business. every build specced and assembled by hand.</div>
+      </div>
+
+    </div>
   </div>
+
+  <div class="section" id="travel">
+    <h2>recently</h2>
+    <p>spent some time in banff this past winter, it was truly magical.</p>
+    <p>(if you also nerd out on cameras like me, i shot these on a fujifilm xt-30iii)</p>
+    <div class="photo-grid">
+      <div class="photo-wrap" data-caption="snowmobiling south of banff in bc">
+        <img src="pictures/snowmobile.png" alt="snowmobiling south of banff in bc"/>
+      </div>
+      <div class="photo-wrap" data-caption="banff avenue at night">
+        <img src="pictures/banff_avenue.jpg" alt="banff avenue at night"/>
+      </div>
+      <div class="photo-wrap" data-caption="snowy banff national park">
+        <img src="pictures/banff_national_park.jpg" alt="snowy banff national park"/>
+      </div>
+      <div class="photo-wrap wide" data-caption="fairmont banff springs">
+        <img src="pictures/fairmont_banff_springs.JPG" alt="fairmont banff springs"/>
+      </div>
+      <div class="photo-wrap" data-caption="insane bench view in canmore, near banff">
+        <img src="pictures/canmore_engine_bridge.jpg" alt="insane bench view in canmore, near banff"/>
+      </div>
+      <div class="photo-wrap" data-caption="banff train">
+        <img src="pictures/banff_train.jpg" alt="banff train"/>
+      </div>
+      <div class="photo-wrap" data-caption="views while snowmobiling in bc">
+        <img src="pictures/snowmobile_2.png" alt="views while snowmobiling in bc"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>contact</h2>
+    <p>want to work together or just want to talk? reach me at <strong><a href="mailto:mikael@mikaelsyed.me">mikael@mikaelsyed.me</a></strong> or through any of the links above.</p>
+  </div>
+
+  <footer>© 2025 mikael syed
+    <p>site inspired by <a href="https://abhi-arya1.github.io" target="_blank">abhi</a> and <a href="https://samirkharel.com" target="_blank">samir</a>.</p>
+  </footer>
 </div>
-
-</div><!-- /page -->
-
-<footer>
-  <p>© 2025 mikael syed</p>
-  <p>mikaelsyed.me</p>
-</footer>
-
-</div><!-- /site -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-/* ══════════════════════════════════════════
-   STARFIELD — animated particle background
-══════════════════════════════════════════ */
+/* ── theme ── */
 (function(){
-  const c=document.getElementById('starfield');
-  const ctx=c.getContext('2d');
-  let W,H,stars=[];
-  function resize(){W=c.width=innerWidth;H=c.height=innerHeight}
-  resize();
-  window.addEventListener('resize',resize,{passive:true});
-
-  function init(){
-    stars=[];
-    for(let i=0;i<240;i++){
-      stars.push({
-        x:Math.random()*W,y:Math.random()*H,
-        r:.15+Math.random()*1.1,
-        speed:.08+Math.random()*.3,
-        base:.06+Math.random()*.22,
-        tOff:Math.random()*Math.PI*2,
-        tSpd:.3+Math.random()*.7,
-      });
-    }
+  const btn=document.getElementById('theme-btn');
+  const moon=document.getElementById('icon-moon');
+  const sun=document.getElementById('icon-sun');
+  const html=document.documentElement;
+  function setLight(on){
+    html.classList.toggle('light',on);
+    moon.style.display=on?'none':'block';
+    sun.style.display=on?'block':'none';
+    try{localStorage.setItem('theme',on?'light':'dark');}catch(e){}
+    if(window.updateGlobe) updateGlobe();
   }
-  init();
-
-  let sy=0,t=0;
-  window.addEventListener('scroll',()=>sy=scrollY,{passive:true});
-
-  (function draw(){
-    requestAnimationFrame(draw);
-    t+=.014;
-    ctx.clearRect(0,0,W,H);
-
-    // nebula glows
-    [[W*.1,H*.25,200,'55,55,110'],[W*.88,H*.65,240,'35,35,85'],[W*.5,H*.08,160,'45,45,95']].forEach(([nx,ny,nr,nc])=>{
-      const g=ctx.createRadialGradient(nx,ny,0,nx,ny,nr);
-      g.addColorStop(0,`rgba(${nc},.045)`);g.addColorStop(1,`rgba(${nc},0)`);
-      ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    });
-
-    stars.forEach(s=>{
-      s.y-=s.speed*.35;
-      if(s.y<-4)s.y=H+4;
-      const py=(s.y/H)*sy*.035;
-      const a=s.base*(0.55+0.45*Math.sin(t*s.tSpd+s.tOff));
-      ctx.beginPath();
-      ctx.arc(s.x,s.y-py,s.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(190,190,215,${a})`;
-      ctx.fill();
-    });
-  })();
+  setLight(localStorage.getItem('theme')==='light');
+  btn.addEventListener('click',()=>setLight(!html.classList.contains('light')));
 })();
 
-/* ══════════════════════════════════════════
-   GLOBE — hero
-══════════════════════════════════════════ */
+/* ── cursor-following photo captions ── */
+(function(){
+  const tip=document.getElementById('cursor-caption');
+  let active=false;
+
+  document.querySelectorAll('.photo-wrap').forEach(wrap=>{
+    wrap.addEventListener('mouseenter',()=>{
+      tip.textContent=wrap.dataset.caption||'';
+      tip.style.opacity='1';
+      active=true;
+    });
+    wrap.addEventListener('mouseleave',()=>{
+      tip.style.opacity='0';
+      active=false;
+    });
+  });
+
+  window.addEventListener('mousemove',e=>{
+    if(!active) return;
+    // keep caption from going off right edge
+    const w=tip.offsetWidth;
+    let x=e.clientX+14;
+    if(x+w>window.innerWidth-8) x=e.clientX-w-14;
+    tip.style.left=x+'px';
+    tip.style.top=e.clientY+'px';
+  },{passive:true});
+})();
+
+/* ── globe ── */
 (function(){
   const canvas=document.getElementById('globe-canvas');
   if(!canvas)return;
-  const W=()=>canvas.offsetWidth,H=()=>canvas.offsetHeight;
+  const W=()=>canvas.offsetWidth, H=()=>canvas.offsetHeight;
   const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-  renderer.setClearColor(0,0);renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(W(),H());
+  renderer.setClearColor(0,0);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(W(),H());
   const scene=new THREE.Scene();
-  const cam=new THREE.PerspectiveCamera(42,W()/H(),.1,100);cam.position.z=3.6;
-
-  // single group so everything rotates together
+  const cam=new THREE.PerspectiveCamera(42,W()/H(),.1,100);
+  cam.position.z=3.6;
   const group=new THREE.Group();scene.add(group);
-
-  // wireframe sphere
-  const sGeo=new THREE.SphereGeometry(1,56,36);
-  const edges=new THREE.EdgesGeometry(sGeo,6);
   const wireMat=new THREE.LineBasicMaterial({color:0x333366,transparent:true,opacity:.55});
-  group.add(new THREE.LineSegments(edges,wireMat));
-
-  // surface dots + connections
+  group.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(1,56,36),6),wireMat));
   const dMat=new THREE.MeshBasicMaterial({color:0x8888bb,transparent:true,opacity:.9});
+  const connMat=new THREE.LineBasicMaterial({color:0x444477,transparent:true,opacity:.5});
   const positions=[];
   for(let i=0;i<90;i++){
     const theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
@@ -473,16 +431,22 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
     d.position.setFromSphericalCoords(1.01,phi,theta);
     group.add(d);positions.push(d.position.clone());
   }
-  const lineVerts=[];
+  const lv=[];
   for(let i=0;i<positions.length;i++)
     for(let j=i+1;j<positions.length;j++)
       if(positions[i].distanceTo(positions[j])<.52)
-        lineVerts.push(...positions[i].toArray(),...positions[j].toArray());
+        lv.push(...positions[i].toArray(),...positions[j].toArray());
   const lGeo=new THREE.BufferGeometry();
-  lGeo.setAttribute('position',new THREE.Float32BufferAttribute(lineVerts,3));
-  group.add(new THREE.LineSegments(lGeo,new THREE.LineBasicMaterial({color:0x444477,transparent:true,opacity:.5})));
-
-  // drag to rotate
+  lGeo.setAttribute('position',new THREE.Float32BufferAttribute(lv,3));
+  group.add(new THREE.LineSegments(lGeo,connMat));
+  window.updateGlobe=function(){
+    const light=document.documentElement.classList.contains('light');
+    wireMat.color.set(light?0x999999:0x333366);
+    wireMat.opacity=light?.35:.55;
+    dMat.color.set(light?0x666666:0x8888bb);
+    connMat.color.set(light?0x888888:0x444477);
+    connMat.opacity=light?.25:.5;
+  };
   let drag=false,lx=0,ly=0,vx=0,vy=.0015,rx=.25,ry=0;
   canvas.addEventListener('mousedown',e=>{drag=true;lx=e.clientX;ly=e.clientY});
   window.addEventListener('mouseup',()=>drag=false);
@@ -490,36 +454,15 @@ footer p{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacin
   canvas.addEventListener('touchstart',e=>{drag=true;lx=e.touches[0].clientX;ly=e.touches[0].clientY},{passive:true});
   canvas.addEventListener('touchend',()=>drag=false,{passive:true});
   canvas.addEventListener('touchmove',e=>{if(!drag)return;vy=(e.touches[0].clientX-lx)*.004;vx=(e.touches[0].clientY-ly)*.004;lx=e.touches[0].clientX;ly=e.touches[0].clientY},{passive:true});
-
   window.addEventListener('resize',()=>{cam.aspect=W()/H();cam.updateProjectionMatrix();renderer.setSize(W(),H());},{passive:true});
-
-  let sy=0;
-  window.addEventListener('scroll',()=>sy=scrollY,{passive:true});
-
   (function frame(){
     requestAnimationFrame(frame);
     if(!drag){vx*=.94;vy*=.94;vy+=.0008;}
     ry+=vy;rx+=vx;rx=Math.max(-.7,Math.min(.7,rx));
-    group.rotation.y=ry;
-    group.rotation.x=rx+sy*.0004;
+    group.rotation.y=ry;group.rotation.x=rx;
     renderer.render(scene,cam);
   })();
 })();
-
-
-
-
-
-
-/* ══════════════════════════════════════════
-   NAV
-══════════════════════════════════════════ */
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{
-  nav.classList.toggle('scrolled',scrollY>60);
-},{passive:true});
-
-
 </script>
 </body>
 </html>
