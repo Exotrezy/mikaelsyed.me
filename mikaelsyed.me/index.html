@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>mikael syed</title>
+<meta name="description" content="CS & ECE student based in Houston, TX. Building at the intersection of hardware and software."/>
+<link rel="canonical" href="https://mikaelsyed.me"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://mikaelsyed.me"/>
+<meta property="og:title" content="Mikael Syed"/>
+<meta property="og:description" content="CS & ECE student. Building at the intersection of hardware and software."/>
+<meta property="og:image" content="https://mikaelsyed.me/og-image.png"/>
+<meta property="og:site_name" content="Mikael Syed"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Mikael Syed"/>
+<meta name="twitter:description" content="CS & ECE student. Building at the intersection of hardware and software."/>
+<meta name="twitter:image" content="https://mikaelsyed.me/og-image.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#08080f;
+  --fg:#e8e8e8;
+  --mid:#aaaabc;
+  --muted:#686878;
+  --under:rgba(255,255,255,.15);
+}
+html.light{
+  --bg:#ffffff;
+  --fg:#111111;
+  --mid:#444444;
+  --muted:#888888;
+  --under:rgba(0,0,0,.18);
+}
+
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:'Instrument Sans',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  transition:background .25s,color .25s;
+  padding:0 20px;
+}
+
+.page{
+  max-width:580px;
+  margin:0 auto;
+  padding:48px 0 80px;
+}
+
+/* ── header ── */
+header{ margin-bottom:48px; }
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.site-name{
+  font-size:16px;
+  font-weight:600;
+  color:var(--fg);
+}
+.header-right{
+  display:flex;align-items:center;gap:16px;
+}
+.header-right a{
+  font-size:14px;color:var(--muted);
+  text-decoration:none;transition:color .15s;
+}
+.header-right a:hover{color:var(--fg)}
+
+#theme-btn{
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);padding:0;
+  display:flex;align-items:center;
+  transition:color .15s;
+}
+#theme-btn:hover{color:var(--fg)}
+#theme-btn svg{
+  width:16px;height:16px;
+  fill:none;stroke:currentColor;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+}
+
+.contact-row{
+  display:flex;flex-wrap:wrap;gap:6px 16px;
+  font-size:14px;
+}
+.contact-row a{
+  color:var(--muted);
+  text-decoration:none;
+  transition:color .15s;
+}
+.contact-row a:hover{color:var(--fg)}
+
+/* ── hero ── */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  align-items:center;
+  margin-bottom:52px;
+}
+.hero-globe{
+  position:relative;
+  height:220px;
+}
+#globe-canvas{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+}
+.hero-text h1{
+  font-size:17px;
+  font-weight:600;
+  color:var(--fg);
+  line-height:1.4;
+  margin-bottom:10px;
+}
+.hero-text p{
+  font-size:15px;
+  color:var(--mid);
+  line-height:1.75;
+}
+
+/* ── sections ── */
+.section{margin-bottom:44px}
+.section h2{
+  font-size:13px;
+  font-weight:600;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  margin-bottom:14px;
+}
+.section p{
+  font-size:15px;
+  color:var(--mid);
+  line-height:1.8;
+  margin-bottom:10px;
+}
+.section p:last-child{margin:0}
+.section strong{color:var(--fg);font-weight:500}
+.section a{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
+
+/* ── work ── */
+.work-list{display:flex;flex-direction:column;gap:18px}
+.work-item{display:block}
+.wi-meta{font-size:13px;color:var(--muted);margin-bottom:1px}
+.wi-name{
+  font-size:15px;
+  color:var(--fg);font-weight:500;
+  display:inline;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  text-decoration-color:var(--under);
+  transition:text-decoration-color .15s;
+}
+.wi-name:hover{text-decoration-color:var(--fg)}
+.wi-desc{font-size:14px;color:var(--mid);line-height:1.7;margin-top:4px}
+
+/* ── photo grid ── */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:16px;
+}
+.photo-wrap{
+  position:relative;
+  overflow:hidden;
+  border-radius:6px;
+  aspect-ratio:3/4;
+  cursor:crosshair;
+}
+.photo-wrap.wide{
+  grid-column:1/-1;
+  aspect-ratio:16/7;
+}
+.photo-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .3s ease;
+}
+.photo-wrap:hover img{transform:scale(1.03)}
+
+/* cursor-following caption — positioned via JS */
+.cursor-caption{
+  position:fixed;
+  pointer-events:none;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:'Instrument Sans',system-ui,sans-serif;
+  font-size:12px;
+  padding:5px 11px;
+  border-radius:20px;
+  white-space:nowrap;
+  opacity:0;
+  transition:opacity .15s;
+  z-index:1000;
+  transform:translate(14px, -50%);
+}
+html.light .cursor-caption{
+  background:#fff;
+  box-shadow:0 1px 8px rgba(0,0,0,.12);
+}
+
+/* ── footer ── */
+footer{
+  margin-top:52px;
+  font-size:13px;
+  color:var(--muted);
+}
+footer a{
+  color:var(--muted);
+  text-decoration:underline;
+  text-underline-offset:3px;
+  transition:color .15s;
+}
+footer a:hover{color:var(--fg)}
+
+/* ── mobile ── */
+@media(max-width:520px){
+  .page{padding:32px 0 60px}
+  header{margin-bottom:36px}
+  .header-right{gap:12px}
+  .hero{grid-template-columns:1fr;gap:16px}
+  .hero-globe{height:200px}
+  .photo-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- cursor-following caption (shared, moved by JS) -->
+<div class="cursor-caption" id="cursor-caption"></div>
+
+<div class="page">
+
+  <header>
+    <div class="header-top">
+      <span class="site-name">mikael syed</span>
+      <div class="header-right">
+        <a href="#work">work</a>
+        <a href="#contact">contact</a>
+        <a href="https://mikaelsyed.me/resume" target="_blank">resume</a>
+        <button id="theme-btn" aria-label="Toggle theme">
+          <svg id="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="icon-sun" viewBox="0 0 24 24" style="display:none">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="contact-row">
+      <a href="https://github.com/exotrezy" target="_blank">github</a>
+      <a href="https://www.linkedin.com/in/mikael-syed-9344b12b3/" target="_blank">linkedin</a>
+      <a href="mailto:mikael@mikaelsyed.me">email</a>
+      <a href="https://traced.mikaelsyed.me" target="_blank">traced</a>
+      <a href="https://prismpcs.mikaelsyed.me" target="_blank">prism pcs</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-globe">
+      <canvas id="globe-canvas"></canvas>
+    </div>
+    <div class="hero-text">
+      <h1>cs &amp; ece student,<br>houston tx.</h1>
+      <p>building at the intersection of hardware and software.</p>
+    </div>
+  </div>
+
+  <div class="section" id="about">
+    <h2>about</h2>
+    <p>i built my first pc when i was 12, just to see if i could. that eventually turned into <strong>Prism PCs</strong>, a custom pc business that did over $10k in revenue.</p>
+    <p>before that i was deep in fortnite creative, building maps that hit <strong>4k+ concurrent players</strong> and made over <strong>$1,000</strong>. that's probably where i figured out i liked making things people actually use.</p>
+    <p>i interned at <strong>Magic Hour</strong>, an AI company, working on a voice dataset pipeline for voice cloning. i'm studying cs and ece, with a long-term focus on computer engineering, where hardware and software actually meet.</p>
+    <p>i also co-founded <strong>CodeBridge</strong> to teach kids to code in middle schools, started a web agency called <strong>Presence</strong>, and shipped a chrome extension called <strong>Traced</strong>.</p>
+  </div>
+
+  <div class="section" id="work">
+    <h2>work</h2>
+    <div class="work-list">
+
+      <div class="work-item">
+        <div class="wi-meta">nonprofit · co-founder</div>
+        <a href="https://codebridgeusa.org" target="_blank" class="wi-name">CodeBridge</a>
+        <div class="wi-desc">teaches kids to code in middle schools. built from zero because the gap was real.</div>
+      </div>
+
+      <div class="work-item">
+        <div class="wi-meta">chrome extension · solo</div>
+        <a href="https://traced.mikaelsyed.me" target="_blank" class="wi-name">Traced</a>
+        <div class="wi-desc">know when your emails are opened and links get clicked. completely free — no watermarks, no monthly cap.</div>
+      </div>
+
+      <div class="work-item">
+        <div class="wi-meta">agency · co-founder</div>
+        <a href="https://presencehtx.com" target="_blank" class="wi-name">Presence</a>
+        <div class="wi-desc">web dev company that builds custom sites. no templates, no shortcuts.</div>
+      </div>
+
+      <div class="work-item">
+        <div class="wi-meta">hardware · founder · $10k+ revenue</div>
+        <a href="https://prismpcs.mikaelsyed.me" target="_blank" class="wi-name">Prism PCs</a>
+        <div class="wi-desc">custom gaming pc business. every build specced and assembled by hand.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section" id="travel">
+    <h2>recently</h2>
+    <p>spent some time in banff this past winter, it was truly magical.</p>
+    <p>(if you also nerd out on cameras like me, i shot these on a fujifilm xt-30iii)</p>
+    <div class="photo-grid">
+      <div class="photo-wrap" data-caption="snowmobiling south of banff in bc">
+        <img src="pictures/snowmobile.png" alt="snowmobiling south of banff in bc"/>
+      </div>
+      <div class="photo-wrap" data-caption="banff avenue at night">
+        <img src="pictures/banff_avenue.jpg" alt="banff avenue at night"/>
+      </div>
+      <div class="photo-wrap" data-caption="snowy banff national park">
+        <img src="pictures/banff_national_park.jpg" alt="snowy banff national park"/>
+      </div>
+      <div class="photo-wrap wide" data-caption="fairmont banff springs">
+        <img src="pictures/fairmont_banff_springs.JPG" alt="fairmont banff springs"/>
+      </div>
+      <div class="photo-wrap" data-caption="insane bench view in canmore, near banff">
+        <img src="pictures/canmore_engine_bridge.jpg" alt="insane bench view in canmore, near banff"/>
+      </div>
+      <div class="photo-wrap" data-caption="banff train">
+        <img src="pictures/banff_train.jpg" alt="banff train"/>
+      </div>
+      <div class="photo-wrap" data-caption="views while snowmobiling in bc">
+        <img src="pictures/snowmobile_2.png" alt="views while snowmobiling in bc"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>contact</h2>
+    <p>want to work together or just want to talk? reach me at <strong><a href="mailto:mikael@mikaelsyed.me">mikael@mikaelsyed.me</a></strong> or through any of the links above.</p>
+  </div>
+
+  <footer>© 2025 mikael syed
+    <p>site inspired by <a href="https://abhi-arya1.github.io" target="_blank">abhi</a> and <a href="https://samirkharel.com" target="_blank">samir</a>.</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ── theme ── */
+(function(){
+  const btn=document.getElementById('theme-btn');
+  const moon=document.getElementById('icon-moon');
+  const sun=document.getElementById('icon-sun');
+  const html=document.documentElement;
+  function setLight(on){
+    html.classList.toggle('light',on);
+    moon.style.display=on?'none':'block';
+    sun.style.display=on?'block':'none';
+    try{localStorage.setItem('theme',on?'light':'dark');}catch(e){}
+    if(window.updateGlobe) updateGlobe();
+  }
+  setLight(localStorage.getItem('theme')==='light');
+  btn.addEventListener('click',()=>setLight(!html.classList.contains('light')));
+})();
+
+/* ── cursor-following photo captions ── */
+(function(){
+  const tip=document.getElementById('cursor-caption');
+  let active=false;
+
+  document.querySelectorAll('.photo-wrap').forEach(wrap=>{
+    wrap.addEventListener('mouseenter',()=>{
+      tip.textContent=wrap.dataset.caption||'';
+      tip.style.opacity='1';
+      active=true;
+    });
+    wrap.addEventListener('mouseleave',()=>{
+      tip.style.opacity='0';
+      active=false;
+    });
+  });
+
+  window.addEventListener('mousemove',e=>{
+    if(!active) return;
+    // keep caption from going off right edge
+    const w=tip.offsetWidth;
+    let x=e.clientX+14;
+    if(x+w>window.innerWidth-8) x=e.clientX-w-14;
+    tip.style.left=x+'px';
+    tip.style.top=e.clientY+'px';
+  },{passive:true});
+})();
+
+/* ── globe ── */
+(function(){
+  const canvas=document.getElementById('globe-canvas');
+  if(!canvas)return;
+  const W=()=>canvas.offsetWidth, H=()=>canvas.offsetHeight;
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+  renderer.setClearColor(0,0);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(W(),H());
+  const scene=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(42,W()/H(),.1,100);
+  cam.position.z=3.6;
+  const group=new THREE.Group();scene.add(group);
+  const wireMat=new THREE.LineBasicMaterial({color:0x333366,transparent:true,opacity:.55});
+  group.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(1,56,36),6),wireMat));
+  const dMat=new THREE.MeshBasicMaterial({color:0x8888bb,transparent:true,opacity:.9});
+  const connMat=new THREE.LineBasicMaterial({color:0x444477,transparent:true,opacity:.5});
+  const positions=[];
+  for(let i=0;i<90;i++){
+    const theta=Math.random()*Math.PI*2,phi=Math.acos(2*Math.random()-1);
+    const d=new THREE.Mesh(new THREE.SphereGeometry(.013,5,5),dMat);
+    d.position.setFromSphericalCoords(1.01,phi,theta);
+    group.add(d);positions.push(d.position.clone());
+  }
+  const lv=[];
+  for(let i=0;i<positions.length;i++)
+    for(let j=i+1;j<positions.length;j++)
+      if(positions[i].distanceTo(positions[j])<.52)
+        lv.push(...positions[i].toArray(),...positions[j].toArray());
+  const lGeo=new THREE.BufferGeometry();
+  lGeo.setAttribute('position',new THREE.Float32BufferAttribute(lv,3));
+  group.add(new THREE.LineSegments(lGeo,connMat));
+  window.updateGlobe=function(){
+    const light=document.documentElement.classList.contains('light');
+    wireMat.color.set(light?0x999999:0x333366);
+    wireMat.opacity=light?.35:.55;
+    dMat.color.set(light?0x666666:0x8888bb);
+    connMat.color.set(light?0x888888:0x444477);
+    connMat.opacity=light?.25:.5;
+  };
+  let drag=false,lx=0,ly=0,vx=0,vy=.0015,rx=.25,ry=0;
+  canvas.addEventListener('mousedown',e=>{drag=true;lx=e.clientX;ly=e.clientY});
+  window.addEventListener('mouseup',()=>drag=false);
+  window.addEventListener('mousemove',e=>{if(!drag)return;vx=(e.clientY-ly)*.004;vy=(e.clientX-lx)*.004;lx=e.clientX;ly=e.clientY});
+  canvas.addEventListener('touchstart',e=>{drag=true;lx=e.touches[0].clientX;ly=e.touches[0].clientY},{passive:true});
+  canvas.addEventListener('touchend',()=>drag=false,{passive:true});
+  canvas.addEventListener('touchmove',e=>{if(!drag)return;vy=(e.touches[0].clientX-lx)*.004;vx=(e.touches[0].clientY-ly)*.004;lx=e.touches[0].clientX;ly=e.touches[0].clientY},{passive:true});
+  window.addEventListener('resize',()=>{cam.aspect=W()/H();cam.updateProjectionMatrix();renderer.setSize(W(),H());},{passive:true});
+  (function frame(){
+    requestAnimationFrame(frame);
+    if(!drag){vx*=.94;vy*=.94;vy+=.0008;}
+    ry+=vy;rx+=vx;rx=Math.max(-.7,Math.min(.7,rx));
+    group.rotation.y=ry;group.rotation.x=rx;
+    renderer.render(scene,cam);
+  })();
+})();
+</script>
+</body>
+</html>
